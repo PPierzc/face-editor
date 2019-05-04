@@ -7,6 +7,7 @@
     "@material-ui/lab": "^3.0.0-alpha.30",
     "@tensorflow/tfjs": "^1.1.0",
     "eslint": "^5.16.0",
+    "gh-pages": "^2.0.1",
     "material-ui": "^0.20.2",
     "mathjs": "^5.9.0",
     "ml-matrix": "^6.0.0",
@@ -21,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

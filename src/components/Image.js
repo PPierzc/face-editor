@@ -1,4 +1,5 @@
 import React from 'react'
+import * as tf from '@tensorflow/tfjs'
 
 class Image extends React.Component {
   componentDidMount () {
@@ -6,32 +7,35 @@ class Image extends React.Component {
   }
 
   componentDidUpdate (prevPros) {
-    if (prevPros.input !== this.props.input || prevPros.model !== this.props.model) {
-      if (this.props.model) {
-        const prediction = this.props.model.predict(this.props.input)
-        const predictionData = prediction.dataSync()
-        const max = predictionData.reduce((res, cur) => res < cur ? cur : res, -Infinity)
-        const min = predictionData.reduce((res, cur) => res > cur ? cur : res, Infinity)
+    tf.tidy(() => {
+      if (prevPros.input !== this.props.input || prevPros.model !== this.props.model) {
+        const inputTensor = tf.tensor(this.props.input)
+        if (this.props.model) {
+          const prediction = this.props.model.predict(inputTensor)
+          const predictionData = prediction.dataSync()
+          const max = predictionData.reduce((res, cur) => res < cur ? cur : res, -Infinity)
+          const min = predictionData.reduce((res, cur) => res > cur ? cur : res, Infinity)
 
-        const arr = new Uint8ClampedArray(256 * 256 * 4)
-        // Iterate through every pixel
+          const arr = new Uint8ClampedArray(256 * 256 * 4)
+          // Iterate through every pixel
 
-        let pos = 0
-        for (let i = 0; i < arr.length; i += 4) {
-          arr[i] = (predictionData[pos] - min) / max * 255 // R value
-          arr[i + 1] = (predictionData[pos + 1] - min) / max * 255 // G value
-          arr[i + 2] = (predictionData[pos + 2] - min) / max * 255 // B value
-          arr[i + 3] = 255 // A value
-          pos += 3
+          let pos = 0
+          for (let i = 0; i < arr.length; i += 4) {
+            arr[i] = (predictionData[pos] - min) / max * 255 // R value
+            arr[i + 1] = (predictionData[pos + 1] - min) / max * 255 // G value
+            arr[i + 2] = (predictionData[pos + 2] - min) / max * 255 // B value
+            arr[i + 3] = 255 // A value
+            pos += 3
+          }
+
+          // Initialize a new ImageData object
+          const image = new ImageData(arr, 256, 256)
+
+          const context = this.refs.canvas.getContext('2d')
+          context.putImageData(image, 0, 0)
         }
-
-        // Initialize a new ImageData object
-        const image = new ImageData(arr, 256, 256)
-
-        const context = this.refs.canvas.getContext('2d')
-        context.putImageData(image, 0, 0)
       }
-    }
+    })
   }
 
   render () {

@@ -1,7 +1,6 @@
 import React from 'react'
-import * as tf from '@tensorflow/tfjs'
 
-import { Card, CardContent, Typography, Button } from '@material-ui/core'
+import { Typography, Button } from '@material-ui/core'
 import Slider from '@material-ui/lab/Slider'
 import { PCA } from 'ml-pca'
 import { Matrix } from 'ml-matrix'
@@ -58,7 +57,7 @@ class SelectorCard extends React.Component {
 
     this.state = {
       input: components,
-      _i: tf.tensor([recon]),
+      _i: [recon],
       pca,
       mu,
       std,
@@ -87,7 +86,7 @@ class SelectorCard extends React.Component {
 
     this.setState({
       input: components,
-      _i: tf.tensor([[baseImage]]),
+      _i: [[baseImage]],
       baseId,
       mu
     })
@@ -109,7 +108,7 @@ class SelectorCard extends React.Component {
 
     this.setState({
       input: components,
-      _i: tf.tensor([[baseImage]]),
+      _i: [[baseImage]],
       baseId
     })
   }
@@ -135,7 +134,7 @@ class SelectorCard extends React.Component {
     const recon = invert(pca, [invComponents]).data
     return () => {
       this.setState({
-        _i: tf.tensor([recon])
+        _i: [recon]
       })
     }
   }
