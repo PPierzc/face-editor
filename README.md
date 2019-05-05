@@ -1,7 +1,9 @@
 # Neural Face Editor
 A face editor built on an Artificial Neural Network using React.js and Tensorflow.js.
 
-<img style="border: 5px solid #000" src="https://res.cloudinary.com/ppierzc/image/upload/v1557048940/Screenshot_2019-05-05_at_11.06.44_wpmumk.png" height="400" />
+<img src="https://res.cloudinary.com/ppierzc/image/upload/v1557048940/Screenshot_2019-05-05_at_11.06.44_wpmumk.png" height="400" />
+
+<img src="https://res.cloudinary.com/ppierzc/image/upload/v1557050628/Screenshot_2019-05-05_at_12.03.18_zl5dr6.png" height="400" />
 
 *[Demo](https://nervous-austin-615801.netlify.com) works best on desktop!*
 
