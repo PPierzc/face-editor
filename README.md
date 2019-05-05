@@ -1,12 +1,14 @@
 # Neural Face Editor
 A face editor based on a Artificial Neural Network.
 
-<img src="" />
+<img src="https://res.cloudinary.com/ppierzc/image/upload/v1557048940/Screenshot_2019-05-05_at_11.06.44_wpmumk.png" width="500" />
 
 *[Demo](https://nervous-austin-615801.netlify.com) works best on desktop!*
 
 ## Architecture
 Built using an autoencoder, with the following architecture.
+
+<img src="https://res.cloudinary.com/ppierzc/image/upload/v1557048911/architecture_blh3p5.png" width="500" />
 
 Then the model was split into the encoder and decoder.
 For the client app only the decoder is served.
